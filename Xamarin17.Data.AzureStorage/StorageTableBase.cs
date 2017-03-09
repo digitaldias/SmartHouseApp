@@ -11,7 +11,7 @@ namespace Xamarin17.Data.AzureStorage
 
         public StorageTableBase()
         {
-            var sas = "?sv=2016-05-31&ss=bfqt&srt=sco&sp=rwdlacup&se=2019-03-08T23:51:51Z&st=2017-03-08T15:51:51Z&spr=https&sig=bo0pYjWD695lV7oIE3wWMMYDZqjUX5wJSpU9mWdlv5A%3D";
+            var sas = "?sv=2016-05-31&ss=t&srt=sco&sp=rl&se=2019-03-09T18:23:42Z&st=2017-03-09T10:23:42Z&spr=https&sig=aw34BixOCh6ZIOvk8yPncG%2FS1Pl8JiqAWO4JGnzPpI8%3D";
             StorageCredentials creds = new StorageCredentials(sas);
             CloudStorageAccount cloudStorageAccount = new CloudStorageAccount(creds, null, null, new Uri("https://watermyplants.table.core.windows.net/"), null);
 
