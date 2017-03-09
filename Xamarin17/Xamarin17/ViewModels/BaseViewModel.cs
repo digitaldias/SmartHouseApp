@@ -1,31 +1,24 @@
-﻿using Xamarin17.Helpers;
-using Xamarin17.Models;
-using Xamarin17.Services;
-
-using Xamarin.Forms;
+﻿using Xamarin17.Data.AzureStorage;
+using Xamarin17.Domain.Contracts.Readers;
+using Xamarin17.Helpers;
 
 namespace Xamarin17.ViewModels
 {
     public class BaseViewModel : ObservableObject
     {
-        /// <summary>
-        /// Get the azure service instance
-        /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDeviceReadingsReader DeviceReadingsReader = new DeviceReadingsReader();
 
         bool isBusy = false;
+        string title = string.Empty;
+
+
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-        /// <summary>
-        /// Private backing field to hold the title
-        /// </summary>
-        string title = string.Empty;
-        /// <summary>
-        /// Public property to set and get the title of the item
-        /// </summary>
+
+        
         public string Title
         {
             get { return title; }

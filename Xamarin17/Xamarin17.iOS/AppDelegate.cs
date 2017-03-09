@@ -1,6 +1,9 @@
 ﻿
 using Foundation;
 using UIKit;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 
 namespace Xamarin17.iOS
 {
@@ -12,7 +15,9 @@ namespace Xamarin17.iOS
 			global::Xamarin.Forms.Forms.Init();
 			LoadApplication(new App());
 
-			return base.FinishedLaunching(app, options);
+            MobileCenter.Start("f8f8b8ce-98f0-40a6-8c59-1c535c695db4", typeof(Analytics), typeof(Crashes));
+
+            return base.FinishedLaunching(app, options);
 		}
 	}
 }

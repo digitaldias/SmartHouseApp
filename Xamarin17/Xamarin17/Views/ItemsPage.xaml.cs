@@ -4,6 +4,7 @@ using Xamarin17.Models;
 using Xamarin17.ViewModels;
 
 using Xamarin.Forms;
+using Xamarin17.Domain.Entities;
 
 namespace Xamarin17.Views
 {
@@ -20,11 +21,11 @@ namespace Xamarin17.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as ItemDetailViewModel;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(item));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;

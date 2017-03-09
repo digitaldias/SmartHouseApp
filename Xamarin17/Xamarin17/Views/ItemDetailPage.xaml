@@ -2,9 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamarin17.Views.ItemDetailPage"
-             Title="{Binding Title}">
-	<StackLayout Spacing="20" Padding="15">
-		<Label Text="{Binding Item.Text}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+             Title="{Binding Item.RoomName}">
+    
+	<StackLayout Spacing="5" Padding="5">
+        <Frame OutlineColor="Blue">
+            <StackLayout>
+                <Label Text="{Binding Item.Temperature,StringFormat='Temperature: {0:N0}°C'}" FontSize="Small"/>
+                <Label Text="{Binding Item.Humidity,StringFormat='Humidity: {0:N1}%'}" FontSize="Small"/>
+            </StackLayout>
+        </Frame>
+        
+        <Label Text="{Binding SampleAge, StringFormat='Last sampled: {0}'}" FontAttributes="Bold" />
+
+        <Label Text="Ideal Conditions" FontSize="Medium"/>
+        <Frame OutlineColor="Blue">
+            <StackLayout>
+                <Label Text="{Binding Goal.TargetStart, StringFormat='Min: {0:N0}°C'}" FontSize="Small" />
+                <Label Text="{Binding Goal.TargetEnd, StringFormat='Max: {0:N0}°C'}" FontSize="Small" />
+            </StackLayout>
+        </Frame>
+        <Image Source="{Binding Icon}" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
+        <Label Text="{Binding Status}" FontSize="Medium" HorizontalOptions="CenterAndExpand" />
     </StackLayout>
 </ContentPage>

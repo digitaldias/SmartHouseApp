@@ -2,14 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamarin17.Views.ItemsPage"
-              Title="{Binding Title}"
+              Title="{Binding RoomName}"
              x:Name="BrowseItemsPage">
-  <ContentPage.ToolbarItems>
-  	<ToolbarItem Text="Add Item" Clicked="AddItem_Clicked" />
-  </ContentPage.ToolbarItems>
-  <ContentPage.Content>
-    <StackLayout>
-      <ListView x:Name="ItemsListView"
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ItemsListView"
 				ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -17,24 +14,29 @@
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
+                      RowHeight="50"
 				ItemSelected="OnItemSelected">
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <ViewCell>
-              <StackLayout Padding="10">
-                <Label Text="{Binding Text}"
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16"/>
-                <Label Text="{Binding Description}"
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemDetailTextStyle}"
-                       FontSize="13"/>
-              </StackLayout>
-            </ViewCell>
-          </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
-    </StackLayout> 
-  </ContentPage.Content>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="120">
+                            <Frame OutlineColor="Black" BackgroundColor="{Binding BackgroundColor}">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                    <Frame VerticalOptions="CenterAndExpand">
+                                        <Image Source="{Binding Icon}" Aspect="AspectFill" VerticalOptions="Fill"/>
+                                    </Frame>
+                                    
+                                    <StackLayout Padding="5" Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Item.RoomName}" LineBreakMode="NoWrap" FontSize="16"/>
+                                        <Label Text="{Binding Item.Temperature, StringFormat='Temperature: {0:N0}°C'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="13"/>
+                                        <Label Text="{Binding Item.Humidity, StringFormat='Humidity: {0:N1}%'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
+                                        <Label Text="{Binding Item.SampleAge}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
